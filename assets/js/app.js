@@ -46,6 +46,7 @@
 // #################### 2.  Define Function ###############//
 // function used for updating x-scale var upon click on axis label
 // scaling function: https://www.d3indepth.com/scales/
+
 function xScale(data, chosenXAxis) {
     // create scales
     var xLinearScale = d3.scaleLinear()
@@ -255,7 +256,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .attr("cy", d => yLinearScale(d[chosenYAxis]))
     .attr("r", 15)
     .attr("fill", "purple")
-    .attr("opacity", ".6");
+    .attr("opacity", ".4");
 
   // added by Erin - I wanted to add text to the circles - probably several ways of doing this but here is one.
   // data is bound to ciclesGroupAll like above and now I add a text element at "x" and "y", not the difference from above.
