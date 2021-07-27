@@ -110,7 +110,7 @@ function xScale(data, chosenXAxis) {
     circlesGroup.transition()
       .duration(1000)
       .attr("cx", d => newXScale(d[chosenXAxis]))
-      .attr("cy", d => newYScale(d[chosenYAxis]));
+      .attr("cy", d => newYScale(d[chosenYAxis]));   // Updated to include dynamic Y Axis choice
 
     return circlesGroup;
   }
@@ -124,31 +124,40 @@ function xScale(data, chosenXAxis) {
       textcirclesGroup.transition()
         .duration(1000)
         .attr("x", (d => newXScale(d[chosenXAxis]) - 11))
-        .attr("y", (d => newYScale(d[chosenYAxis]) + 5));
+        .attr("y", (d => newYScale(d[chosenYAxis]) + 5));  // Updated to include dynamic Y Axis choice
 
       return textcirclesGroup;
     }
   
   // function used for updating circles group with new tooltip
-  function updateToolTip(chosenXAxis, circlesGroup) {
+  function updateToolTip(chosenAxis, circlesGroup) {
   
     var label;
   
-    if (chosenXAxis === "poverty") {
+    if (chosenAxis === "poverty") {
       label = "Poverty:";
     }
-    else if (chosenXAxis === "age") {
+    else if (chosenAxis === "age") {                  // Updated to reflect nature of this data
       label = "Age:";
     }
+    else if (chosenAxis === "income") {
+      label = "Income:";                               // Updated to reflect nature of this data
+    }
+    else if (chosenAxis === "healthcare") {
+      label = "Healthcare:";
+    }
+    else if (chosenAxis === "obeseity") {
+      label = "Obesity:";
+    }
     else {
-      label = "Income:";
+      label = "Smokes:";
     }
   
     var toolTip = d3.tip()
       .attr("class", "tooltip")
       .offset([80, -60])
       .html(function(d) {
-        return (`${d.state}<br>${label} ${d[chosenXAxis]}`);
+        return (`${d.state}<br>${label} ${d[chosenAxis]}`);
       });
     
     //Note:  Below circlesGroup is having the tooltip added but other elements could also have the tool tip added
@@ -202,7 +211,7 @@ var chartGroup = svg.append("g")
 
 // Initial Params - includes any axis selection that has multiple options
 var chosenXAxis = "poverty";
-var chosenYAxis = "healthcare";
+var chosenYAxis = "healthcare";  // Added to animage Y-Axis data
 
 
 // Retrieve data from the CSV file and execute everything below
@@ -226,7 +235,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
   // Important note:  xScale uses width that is defined above; xScale can only be called below width in the code
   // scaling function: https://www.d3indepth.com/scales/
   var xLinearScale = xScale(data, chosenXAxis);
-  var yLinearScale = yScale(data, chosenYAxis);
+  var yLinearScale = yScale(data, chosenYAxis);  // Added to animate Y-Axis Data
   
   // Create y scale function
   //var yLinearScale = d3.scaleLinear()
@@ -305,7 +314,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .classed("inactive", true)
     .text("Household Income (Median)");
 
-  var healthcareLabel = YlabelsGroup.append("text")
+  var healthcareLabel = YlabelsGroup.append("text")  // Added to animate Y-Axis healthcare data
     .attr("transform", "rotate(-90)")
     .attr("x", 0 - (height / 2))
     .attr("y", 0 - margin.left)
@@ -315,7 +324,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .classed("axis-text", true)
     .text("Lacks Healthcare (%)");
 
-  var obesityLabel = YlabelsGroup.append("text")
+  var obesityLabel = YlabelsGroup.append("text")   // Added to animate Y-Axis obesity data
     .attr("transform", "rotate(-90)")
     .attr("x", 0 - (height / 2))
     .attr("y", 20 - margin.left)
@@ -325,7 +334,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .classed("axis-text", true)
     .text("Obese (%)");
 
-  var smokesLabel = YlabelsGroup.append("text")
+  var smokesLabel = YlabelsGroup.append("text")   // Added to animate Y-Axis smoking data
     .attr("transform", "rotate(-90)")
     .attr("x", 0 - (height / 2))
     .attr("y", 40 - margin.left)
@@ -423,9 +432,9 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
       }
     });
 
-  YlabelsGroup.selectAll("text")
-    .on("click", function() {
-      // get value of selection
+  YlabelsGroup.selectAll("text")                        //
+    .on("click", function() {                           // Added Section to animate Y-Axis healthcare, obesity and smoking data
+      // get value of selection                         //
       var yvalue = d3.select(this).attr("value");
       if (yvalue !== chosenYAxis) {
 
