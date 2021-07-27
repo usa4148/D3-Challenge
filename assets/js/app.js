@@ -123,8 +123,8 @@ function xScale(data, chosenXAxis) {
   
       textcirclesGroup.transition()
         .duration(1000)
-        .attr("x", d => newXScale(d[chosenXAxis]))
-        .attr("y", d => newYScale(d[chosenYAxis]));
+        .attr("x", (d => newXScale(d[chosenXAxis]) - 11))
+        .attr("y", (d => newYScale(d[chosenYAxis]) + 5));
 
       return textcirclesGroup;
     }
@@ -250,6 +250,8 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
 
   // append y axis
   var yAxis = chartGroup.append("g")
+  //  .classed("y-axis", true)
+  //  .attr("transform", `translate(0,${height})`)
     .call(leftAxis);
 
   // New by Erin - provide data first to grouped elements 
@@ -264,7 +266,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d[chosenYAxis]))
-    .attr("r", 20)
+    .attr("r", 15)
     .attr("fill", "chartreuse")
     .attr("opacity", ".5");
 
@@ -274,8 +276,8 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
   var textcirclesGroup = circlesGroupAll
     .append("text")
     .text((d) => d.abbr)
-    .attr("x", d => xLinearScale(d[chosenXAxis]))
-    .attr("y", d => yLinearScale(d[chosenYAxis]));
+    .attr("x", (d => xLinearScale(d[chosenXAxis]) - 11))
+    .attr("y", (d => yLinearScale(d[chosenYAxis]) + 5));
 
   // Create group for two x-axis labels
   var labelsGroup = chartGroup.append("g")
@@ -284,7 +286,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
   // Create group for two y-axis labels
   var YlabelsGroup = chartGroup.append("g")
     //.attr("transform", `translate(${height / 2}, ${width + 20})`);
-    .attr("transform", `translate(${0}, ${height / 45})`);
+    .attr("transform", `translate(${0}, ${height / 50})`);
 
   var povertyLabel = labelsGroup.append("text")
     .attr("x", 0)
@@ -314,6 +316,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .attr("dy", "1em")
     .attr("value", "healthcare") // value to grab for event listener
     .classed("active", true)
+    .classed("axis-text", true)
     .text("Lacks Healthcare (%)");
 
   var obesityLabel = YlabelsGroup.append("text")
@@ -323,6 +326,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .attr("dy", "1em")
     .attr("value", "obesity") // value to grab for event listener
     .classed("inactive", true)
+    .classed("axis-text", true)
     .text("Obese (%)");
 
   var smokesLabel = YlabelsGroup.append("text")
@@ -332,6 +336,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .attr("dy", "1em")
     .attr("value", "smokes") // value to grab for event listener
     .classed("inactive", true)
+    .classed("axis-text", true)
     .text("Smokes (%)");
   
 
@@ -422,7 +427,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
       }
     });
 
-    YlabelsGroup.selectAll("text")
+  YlabelsGroup.selectAll("text")
     .on("click", function() {
       // get value of selection
       var yvalue = d3.select(this).attr("value");
