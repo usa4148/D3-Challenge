@@ -29,7 +29,7 @@
 //      a.  convert data to numericals
 //      b.  scale and assign axis
 //      c.  create circlsGroupAll elements and circlesGroup and textcirclesGroup elements
-//      d.  create 2 x-label groups, one y-label group, one albumGroup, one tooltip group
+//      d.  create 2 x-label groups, 2 y-label groups, one albumGroup, one BIG tooltip group
 // 5. ADD updates upon clicking axis text  
 //      a. Reassign these objects/elements with new values after click
 //          i.  xLinearScale
@@ -255,7 +255,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
 
   // append y axis
   var yAxis = chartGroup.append("g")
-  //  .classed("y-axis", true)
+    .classed("y-axis", true)
   //  .attr("transform", `translate(0,${height})`)
     .call(leftAxis);
 
@@ -273,7 +273,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .attr("cy", d => yLinearScale(d[chosenYAxis]))
     .attr("r", 15)
     .attr("fill", "purple")
-    .attr("opacity", ".5");
+    .attr("opacity", ".6");
 
   // added by Erin - I wanted to add text to the circles - probably several ways of doing this but here is one.
   // data is bound to ciclesGroupAll like above and now I add a text element at "x" and "y", not the difference from above.
@@ -453,7 +453,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
         // updates circles with new y values
         circlesGroup = renderCircles(circlesGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
         // New - updates text labels within circles
-        textcirclesGroup = rendertextCircles(textcirclesGroup, xLinearScale, yLinearScale, chosenYAxis, chosenYAxis);
+        textcirclesGroup = rendertextCircles(textcirclesGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
         // updates tooltips with new info
         circlesGroup = updateToolTip(chosenYAxis, circlesGroup);
 
