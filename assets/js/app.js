@@ -198,10 +198,6 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 
-
-
-
-
 // #################### 4.  BRING in Data and ADD Structure ###############//
 
 // Initial Params - includes any axis selection that has multiple options
@@ -267,7 +263,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d[chosenYAxis]))
     .attr("r", 15)
-    .attr("fill", "chartreuse")
+    .attr("fill", "purple")
     .attr("opacity", ".5");
 
   // added by Erin - I wanted to add text to the circles - probably several ways of doing this but here is one.
