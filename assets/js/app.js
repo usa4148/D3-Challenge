@@ -146,7 +146,7 @@ function xScale(data, chosenXAxis) {
     else if (chosenAxis === "healthcare") {
       label = "Healthcare:";
     }
-    else if (chosenAxis === "obeseity") {
+    else if (chosenAxis === "obesity") {
       label = "Obesity:";
     }
     else {
