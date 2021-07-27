@@ -1,20 +1,24 @@
-// I worked with Erin Wills (TA) and the following people:  Dan Waehner, Michelle Goldberg, Leila Zintsem, Eugene Xu, Rachel Thorpe, Daniel Atuesta_____________
-// Remember to comment your code as we discuss it.  Commenting the code is required.
-// Prior to starting, make sure  you have already created and cloned your repo.
-
-
-
-// Refer to the pdf diagram to see the visual relationship of the code
+//
+//   D3 Challenge
+//   Dan C  (And Friends)
+//
+// I worked with Erin Wills (TA) and the following people:  Dan Waehner, Michelle Goldberg, Leila Zintsem, Eugene Xu, Rachel Thorpe, Daniel Atuesta__________
 
 // Layout of this document
 // 1.  Data Exploration (always do this; understand its structure)
 // 2.  Define Functions (a and e used in page load, a through e used in click event)
 //      a.  xScale(Data, chosenXAxis):  Scales data to svg width (var width defined in Section 3: Setup SVG )
-//              inputs:  (data like "Data", an axis name like "hair_length")
+//              inputs:  (data like "Data")
+//              returns:  scaled data function
+//      a'.  yScale(Data, chosenYAxis):  Scales data to svg width (var width defined in Section 3: Setup SVG )
+//              inputs:  (data like "Data")
 //              returns:  scaled data function
 //      b.  renderAxes(newXScale, xAxis): Uses the xScale function and sets new x-axis values
 //              inputs:  (function like "xLinearScale", object like xAxis)
 //              outputs:  returns new xAxis values
+//      b'.  renderAxes(newYScale, yAxis): Uses the yScale function and sets new y-axis values
+//              inputs:  (function like "yLinearScale", object like xAxis)
+//              outputs:  returns new yAxis values
 //      c.  renderCircles(circlesGroup, newXScale, chosenXAxis):  Takes grouped elements like "circlesGroup" and scales data of a given axis and assigns it to the elements attribute "cx"
 //              inputs:  (grouped elements like "circlesGroup", a function like "xLinearScale", a specified axis name like "chosenXAxis" (ie "hair_length"))
 //              outputs:  returns updated circlesGroup elements with new x values
@@ -158,10 +162,6 @@ function xScale(data, chosenXAxis) {
   
     return circlesGroup;
   }
-
-
-
-
 
 //########################  3.  SVG Setup ###################################//
 
