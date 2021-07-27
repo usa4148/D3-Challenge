@@ -321,7 +321,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .attr("dy", "1em")
     .attr("value", "healthcare") // value to grab for event listener
     .classed("active", true)
-    .classed("axis-text", true)
+  //  .classed("axis-text", true)
     .text("Lacks Healthcare (%)");
 
   var obesityLabel = YlabelsGroup.append("text")   // Added to animate Y-Axis obesity data
@@ -331,7 +331,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .attr("dy", "1em")
     .attr("value", "obesity") // value to grab for event listener
     .classed("inactive", true)
-    .classed("axis-text", true)
+  //  .classed("axis-text", true)
     .text("Obese (%)");
 
   var smokesLabel = YlabelsGroup.append("text")   // Added to animate Y-Axis smoking data
@@ -341,7 +341,7 @@ d3.csv("assets/data/data.csv").then(function(data, err) {
     .attr("dy", "1em")
     .attr("value", "smokes") // value to grab for event listener
     .classed("inactive", true)
-    .classed("axis-text", true)
+  //  .classed("axis-text", true)
     .text("Smokes (%)");
   
 
